@@ -10,6 +10,7 @@ MakeSeqDictionary.R:
 These two functions take a fasta as input and stores the Header and Sequence in a list (aka dictionary) parallel to one another. This enables me to get the sequences from the name, sorta like a key-value pair.
 
 ************************* Unfinished Business
+
 To do upstream:
 -Automate the production of the four tables for use in the annotation_scripts_v2.R and their concatenation via bash and perl scripts. The concatenated version will be passed to the MakeSeqDirectionary.R which will be filtered.
 Test to perfom: 
