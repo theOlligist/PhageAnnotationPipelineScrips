@@ -1,5 +1,7 @@
 # PhageAnnotationPipelineScripts
 Scripts that, once finished, will combine to make a pipeline for automating single phage genome annoataion.
+Automate_GeneCalling.pl:
+Perl script that takes as input a set of genome prefixes and runs each gene calling software on each prefix. It saves these tables and extracts unique ORFs via Annotation_scripts_v2.R
 
 Annotation_scripts_v2.R:
 Used to pull the unique open reading frames from the four gene calling software outputs. (needs to be redone. I want them to use the protein fasta headers to do this instead of the tables. The way this script handles prodigal inputs is an an example. The other three use the output tables. I want to make this change bcause MakeSeqDictionary will use the fasta files as well.)
