@@ -18,4 +18,4 @@ $cat GMS_output.faa Prodigal_output.faa > combined.faa
 $MakeSeqDictionary(combined.faa) does it work?
 
 To do downstream:
--Do something with the sequences from the unique ORFs. I can either place them in a column of the dataframe with the other information OR write a separate filtered and ordered fasta file. These will enable the enduser to blastp these sequences for functional annotation.
+-Do something with the sequences from the unique ORFs. I can either place them in a column of the dataframe with the other information OR write a separate filtered and ordered fasta file containing only the unique, non-overlapping ORFs. These will enable the enduser to blastp these sequences for functional annotation.
