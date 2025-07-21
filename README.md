@@ -13,17 +13,25 @@ The program will produce a csv called StructureCompiled.csv
 / ! \ In this version the order is important: GeneMarkS, Prodigal, Metagene, Glimmer
 / ! \ Note that prodigal produces a csv, not a txt
 
+### functional annotation
+We need ORF sequences now.
+StructureCompiled.csv serves as raw material for the sequences at the positions noted by Gene_range1 and Gene_range2, in a strand conscious way.
 
-### On the horizon: functional annotation
-StructureCompiled.csv serves as input for GetSequence.R
+bedtools will be employed to produce a fasta of the ORFs from the genome, ORF coordinates and strand information. Unfortunately it requires the OFR coord and strand to be contained in a special file; a .bed file which we will create with Make_Bed.R
 
-MakeBED.R StructureCompiled.csv ORFs.bed
-GetSequence.R(StructureCompiled.csv, genome.fasta) --> StructureFXCompiled.csv
+Usage:
+Rscript Make_Bed.R PATH/TO/genome.fasta PATH/TO/StructureCompiled.csv  -->ORFs.bed
 
+Use the .bed file to get the ORF sequences as a fasta with bedtools:
+/ ! \ installing bedtools: https://bedtools.readthedocs.io/en/latest/content/installation.html.
+For (mac osx): brew install bedtools
 
+#Run Bedtools
 bedtools getfasta -fi assembly.fna -bed ORFs.bed -s -name -fo orfs.fa
-write_fasta(Column1, Seq) 
 
-RunDram-V
 
-left_join()
+RunDram-V to annotate the sequences
+DRAM-v.py annotate -i orfs.fa -o dramvAnnotation --min_contig_size 100
+
+#Join the annotations to the structure table to produce a complete table with both structural and functional annotations.
+left_join(StructureCompiled.csv annotations.tsv)
