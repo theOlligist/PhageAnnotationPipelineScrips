@@ -17,8 +17,11 @@ The program will produce a csv called StructureCompiled.csv
 ### On the horizon: functional annotation
 StructureCompiled.csv serves as input for GetSequence.R
 
+MakeBED.R StructureCompiled.csv ORFs.bed
 GetSequence.R(StructureCompiled.csv, genome.fasta) --> StructureFXCompiled.csv
 
+
+bedtools getfasta -fi assembly.fna -bed ORFs.bed -s -name -fo orfs.fa
 write_fasta(Column1, Seq) 
 
 RunDram-V
