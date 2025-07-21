@@ -3,19 +3,24 @@ Scripts that, once finished, will combine to make a pipeline for automating sing
 Automate_GeneCalling.pl:
 Perl script that takes as input a set of genome prefixes and runs each gene calling software on each prefix. It saves these tables and extracts unique ORFs via Annotation_scripts_v2.R
 
-Annotation_scripts_v2.R:
-Used to pull the unique open reading frames from the four gene calling software outputs. (needs to be redone. I want them to use the protein fasta headers to do this instead of the tables. The way this script handles prodigal inputs is an an example. The other three use the output tables. I want to make this change bcause MakeSeqDictionary will use the fasta files as well.)
+CompileStructure.R
+Usage: Open reading frames are predicted from a genome using four ORF calling tools: Glimmer, GeneMarkS, Prodigal, and Metagene. From these tools a table is produced where each row represents an ORF and several columns of metadata describing important features of the ORF, such as its coordinates and lengtn. Our goal is to produce a comprehensive list of ORFs utilizing all four program's ORF calls. This is where CompileStructure.R comes in. 
+CompileStructure.R is executed from the command line with four inputs as follows:
+Rscript CompileStructure.R PATH/TO/GeneMarkS_table.txt PATH/TO/Prodigal_table.csv PATH/TO/MetaGene_table.txt PATH/TO/Glimmer_table.txt
 
-MakeSeqDictionary.R:
-These two functions take a fasta as input and stores the Header and Sequence in a list (aka dictionary) parallel to one another. This enables me to get the sequences from the name, sorta like a key-value pair.
+The program will produce a csv called StructureCompiled.csv
 
-************************* Unfinished Business
+/ ! \ In this version the order is important: GeneMarkS, Prodigal, Metagene, Glimmer
+/ ! \ Note that prodigal produces a csv, not a txt
 
-To do upstream:
--Automate the production of the four tables for use in the annotation_scripts_v2.R and their concatenation via bash and perl scripts. The concatenated version will be passed to the MakeSeqDirectionary.R which will be filtered.
-Test to perfom: 
-$cat GMS_output.faa Prodigal_output.faa > combined.faa
-$MakeSeqDictionary(combined.faa) does it work?
 
-To do downstream:
--Do something with the sequences from the unique ORFs. I can either place them in a column of the dataframe with the other information OR write a separate filtered and ordered fasta file containing only the unique, non-overlapping ORFs. These will enable the enduser to blastp these sequences for functional annotation.
+### On the horizon: functional annotation
+StructureCompiled.csv serves as input for GetSequence.R
+
+GetSequence.R(StructureCompiled.csv, genome.fasta) --> StructureFXCompiled.csv
+
+write_fasta(Column1, Seq) 
+
+RunDram-V
+
+left_join()
