@@ -8,7 +8,7 @@ Rscript CompileStructure.R PATH/TO/GeneMarkS_table.txt PATH/TO/Prodigal_table.cs
 
 The program will produce a csv called StructureCompiled.csv
 
-/ ! \ In this version the order is important: GeneMarkS, Prodigal, Metagene, Glimmer \n
+/ ! \ In this version the order is important: GeneMarkS, Prodigal, Metagene, Glimmer.
 / ! \ Note that prodigal produces a csv, not a txt
 
 ### functional annotation
