@@ -12,7 +12,7 @@ The program will produce a csv called StructureCompiled.csv
 / ! \ Note that prodigal produces a csv, not a txt
 
 ### functional annotation
-We need ORF sequences now.
+We need sequences that correspond to each ORF.
 StructureCompiled.csv serves as raw material for the sequences at the positions noted by Gene_range1 and Gene_range2, in a strand conscious way.
 
 bedtools will be employed to produce a fasta of the ORFs from the genome, ORF coordinates and strand information. Unfortunately it requires the OFR coord and strand to be contained in a special file; a .bed file which we will create with Make_Bed.R
